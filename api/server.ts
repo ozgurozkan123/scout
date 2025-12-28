@@ -144,7 +144,7 @@ const rawHandler = createMcpHandler(
       },
     },
   },
-  { basePath: "/api", verboseLogs: true, maxDuration: 60, disableSse: true },
+  { basePath: "", verboseLogs: true, maxDuration: 60, disableSse: true },
 );
 
 const handler = async (request: Request) => {
