@@ -17,7 +17,7 @@ type ScoutSuiteAwsInput = {
   ip_ranges_name_key?: string;
 };
 
-const handler = createMcpHandler(
+const rawHandler = createMcpHandler(
   (server) => {
     server.tool(
       "do-scoutsuite-aws",
@@ -146,5 +146,14 @@ const handler = createMcpHandler(
   },
   { basePath: "/api", verboseLogs: true, maxDuration: 60, disableSse: true },
 );
+
+const handler = async (request: Request) => {
+  try {
+    return await (rawHandler as any)(request);
+  } catch (error) {
+    console.error("scout mcp handler error", error);
+    return new Response("Internal Server Error", { status: 500 });
+  }
+};
 
 export default handler;
