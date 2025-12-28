@@ -1,6 +1,22 @@
 import { createMcpHandler } from "mcp-handler";
 import { z } from "zod";
 
+type ScoutSuiteAwsInput = {
+  full_report?: boolean;
+  max_workers?: number;
+  services?: string[];
+  skip_services?: string[];
+  profile?: string;
+  acces_keys?: string;
+  access_key_id?: string;
+  secret_acces_key?: string;
+  session_token?: string;
+  regions?: string;
+  exclude_regions?: string;
+  ip_ranges?: string;
+  ip_ranges_name_key?: string;
+};
+
 const handler = createMcpHandler(
   (server) => {
     server.tool(
@@ -74,7 +90,7 @@ const handler = createMcpHandler(
         exclude_regions,
         ip_ranges,
         ip_ranges_name_key,
-      }) => {
+      }: ScoutSuiteAwsInput) => {
         const args: string[] = ["aws", "--force", "--no-browser"];
 
         if (max_workers) args.push("--max-workers", max_workers.toString());
