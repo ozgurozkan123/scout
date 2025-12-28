@@ -148,6 +148,7 @@ const rawHandler = createMcpHandler(
 );
 
 const handler = async (request: Request) => {
+  console.log("scout mcp request", request.url);
   try {
     return await (rawHandler as any)(request);
   } catch (error) {
