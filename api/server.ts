@@ -144,7 +144,7 @@ const handler = createMcpHandler(
       },
     },
   },
-  { basePath: "", verboseLogs: true, maxDuration: 60, disableSse: true },
+  { basePath: "/api", verboseLogs: true, maxDuration: 60, disableSse: true },
 );
 
 export default handler;
